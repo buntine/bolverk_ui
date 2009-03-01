@@ -18,9 +18,10 @@ div#container {
 }
 
 div#footer {
-  width: 955px;
+  width: 935px;
   height: 30px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 div#footer p {
@@ -91,27 +92,20 @@ div#content div#control {
   margin-left: 10px;
 }
 
-div#content div#control div#control_panel {
+div#content div#control div#control_panel,
+div#content div#control div#stdout,
+div#content div#control div#stderr,
+div#content div#control div#legend {
   text-align: center;
   width: 188px;
   border: 1px solid #001166;
   background: #eee;
 }
 
-div#content div#control div#stdout {
-  text-align: center;
-  width: 188px;
-  border: 1px solid #001166;
+div#content div#control div#stdout,
+div#content div#control div#stderr,
+div#content div#control div#legend {
   margin: 10px 0;
-  background: #eee;
-}
-
-div#content div#control div#stderr {
-  text-align: center;
-  width: 188px;
-  border: 1px solid #001166;
-  margin: 10px 0;
-  background: #eee;
 }
 
 table.cells {
@@ -129,7 +123,11 @@ table.cells tr td {
   text-align: center;
 }
 
-table.cells tr td div {
+table.cells tr td div,
+div.empty_cell,
+div.populated_cell,
+div.program_cell,
+div.selected_cell {
   margin: 4px;
   padding-top: 4px;
   border: 1px solid #555;
@@ -138,7 +136,20 @@ table.cells tr td div {
   height: 24px;
 }
 
-div#control_panel ul {
+div.populated_cell {
+  background-color: #ccbbff !important;
+}
+
+div.program_cell {
+  background-color: #ffccaa !important;
+}
+
+div.selected_cell {
+  background-color: #ccbbaa !important;
+}
+
+div#control_panel ul,
+div#legend ul {
   margin: 10px 0;
   padding: 0;
   list-style-type: none;
@@ -155,4 +166,21 @@ div#control_panel ul li form {
 
 div#control_panel ul li form input[type='submit'] {
   width: 135px;
+}
+
+div#legend ul li {
+  clear: both;
+  height: 33px;
+  text-align: left;
+}
+
+div#legend ul li label {
+  display: block;
+  float: left;
+  padding-top: 10px;
+}
+
+div#legend ul li div {
+  float: left;
+  margin-right: 6px;
 }
