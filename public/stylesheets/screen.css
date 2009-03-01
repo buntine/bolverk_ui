@@ -108,6 +108,11 @@ div#content div#control div#legend {
   margin: 10px 0;
 }
 
+div#stdout p,
+div#stderr p {
+  margin: 10px 0;
+}
+
 table.cells {
   border: 0;
   margin 0;

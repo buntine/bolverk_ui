@@ -62,59 +62,8 @@
     </table>
   </div>
   <div id="control">
-    <div id="control_panel">
-      <h2>Control Panel</h2>
-      <ul>
-        <li>
-          <form method="get" action="#">
-            <input type="submit" value="Write program" />
-          </form>
-        </li>
-        <li>
-          <form method="get" action="#">
-            <input type="submit" disabled="true" value="Initialize program" />
-          </form>
-        </li>
-        <li>
-          <form method="get" action="#">
-            <input type="submit" disabled="true" value="Machine Cycle" />
-          </form>
-        </li>
-        <li>
-          <form method="get" action="#">
-            <input type="submit" value="Clear / Restart" />
-          </form>
-        </li>
-      </ul>
-    </div>
-
-    <div id="stdout">
-      <h2>Standard output</h2>
-      <p>-- EOF --</P>
-    </div>
-
-    <div id="stderr">
-      <h2>Standard error</h2>
-      <p>-- EOF --</P>
-    </div>
-
-    <div id="legend">
-      <h2>Legend</h2>
-      <ul class="clearfix">
-        <li>
-          <div class="empty_cell"></div> <label>Empty cell</label>
-        </li>
-        <li>
-          <div class="populated_cell"></div> <label>Populated cell</label>
-        </li>
-        <li>
-          <div class="program_cell"></div> <label>Cells to be executed</label>
-        </li>
-        <li>
-          <div class="selected_cell"></div> <label>Selected cell</label>
-        </li>
-      </ul>
-    </div>
-
-
+    <%= erb :control_panel, :layout => false %>
+    <%= erb :stdout, :layout => false %>
+    <%= erb :stderr, :layout => false %>
+    <%= erb :legend, :layout => false %>
   </div>
