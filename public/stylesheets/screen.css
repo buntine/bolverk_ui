@@ -1,0 +1,154 @@
+body {
+  color: #000;
+  font-family: sans-serif, arial, serif;
+  margin: 15px 0 0 0;
+  padding: 0;
+  font-size: 12pt;
+}
+
+a {
+  color: blue;
+}
+
+div#container {
+  width: 955px;
+  height: 722px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+div#footer {
+  width: 955px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+div#footer p {
+  font-size: 11pt;
+  margin: 2px 0 0 0;
+  padding: 0;
+  float: right;
+}
+
+div#heading {
+  width: 935px;
+  height: 80px;
+  padding: 0 10px;
+}
+
+div#heading h1 {
+  font-size: 23pt;
+  margin: 0;
+  padding: 0;
+}
+
+div#heading h3 {
+  font-size: 12pt;
+  font-weight: normal;
+  margin: 6px 0;
+  padding: 0;
+}
+
+div#content {
+  width: 935px;
+  padding: 0 10px;
+}
+
+div#content h2 {
+  margin: 0;
+  padding: 2px 0;
+  font-size: 12pt;
+  color: #000044;
+  width: 100%;
+  border-bottom: 1px solid #001166;
+  background-color: #ddd;
+}
+
+div#content div#registers {
+  text-align: center;
+  width: 92px;
+  float: left;
+  margin-right: 10px;
+  border: 1px solid #001166;
+  background: #eee;
+}
+
+div#content div#main_memory {
+  text-align: center;
+  width: 625px;
+  float: left;
+  border: 1px solid #001166;
+  background: #eee;
+}
+
+div#content div#control {
+  width: 188px;
+  float: left;
+  margin-left: 10px;
+}
+
+div#content div#control div#control_panel {
+  text-align: center;
+  width: 188px;
+  border: 1px solid #001166;
+  background: #eee;
+}
+
+div#content div#control div#stdout {
+  text-align: center;
+  width: 188px;
+  border: 1px solid #001166;
+  margin: 10px 0;
+  background: #eee;
+}
+
+div#content div#control div#stderr {
+  text-align: center;
+  width: 188px;
+  border: 1px solid #001166;
+  margin: 10px 0;
+  background: #eee;
+}
+
+table.cells {
+  border: 0;
+  margin 0;
+  padding: 0;
+}
+
+table.cells tr {
+  margin: 0;
+  padding: 0;
+}
+
+table.cells tr td {
+  text-align: center;
+}
+
+table.cells tr td div {
+  margin: 4px;
+  padding-top: 4px;
+  border: 1px solid #555;
+  background-color: #ccddff;
+  width: 29px;
+  height: 24px;
+}
+
+div#control_panel ul {
+  margin: 10px 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+div#control_panel ul li {
+  padding: 3px;
+}
+
+div#control_panel ul li form {
+  margin: 0;
+  padding: 0;
+}
+
+div#control_panel ul li form input[type='submit'] {
+  width: 135px;
+}
