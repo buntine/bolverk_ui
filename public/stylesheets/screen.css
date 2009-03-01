@@ -73,6 +73,10 @@ div#content div#registers {
   background: #eee;
 }
 
+div#content div#registers table {
+  padding-left: 26px;
+}
+
 div#content div#main_memory {
   text-align: center;
   width: 625px;
