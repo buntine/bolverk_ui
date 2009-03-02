@@ -139,6 +139,7 @@ div.selected_cell {
   background-color: #ccddff;
   width: 29px;
   height: 24px;
+  cursor: pointer;
 }
 
 div.populated_cell {
