@@ -170,7 +170,8 @@ div#control_panel ul li form {
   padding: 0;
 }
 
-div#control_panel ul li form input[type='submit'] {
+div#control_panel ul li form input[type='submit'], 
+div#control_panel ul li form button {
   width: 135px;
 }
 
