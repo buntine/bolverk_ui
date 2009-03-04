@@ -16,9 +16,17 @@ $(document).ready(function(){
       text_box.setAttribute("type", "text");
       text_box.setAttribute("value", hex);
       text_box.setAttribute("maxlength", "2");
+      text_box.setAttribute("maxlength", "2");
+      text_box.className = "cellcontents";
       text_box.style.width = '18px';
       $(this).html(text_box);
     }
+  });
+
+  // Save the updated contents of a memory cell after
+  // it has been modified.
+  $('.cellcontents').livequery('blur', function(){
+    alert($(this).val());
   });
 
   // Helper method.
@@ -27,4 +35,5 @@ $(document).ready(function(){
     return $(cell).html().length > 2;
   }
 
+  
 });
