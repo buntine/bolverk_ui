@@ -191,3 +191,8 @@ div#legend ul li div {
   float: left;
   margin-right: 6px;
 }
+
+.cellcontents {
+  height: 15px;
+  padding: 0;
+}
