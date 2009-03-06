@@ -134,12 +134,13 @@ div.populated_cell,
 div.program_cell,
 div.selected_cell {
   margin: 4px;
-  padding-top: 4px;
+  padding-top: 8px;
   border: 1px solid #555;
   background-color: #ccddff;
   width: 29px;
-  height: 24px;
+  height: 20px;
   cursor: pointer;
+  position: relative
 }
 
 div.populated_cell {
@@ -208,4 +209,9 @@ div#legend ul li div {
   font-weight: normal;
 }
 
-.cult { font-size: 8px; }
+table.cells tr td div span.hex {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  font-size: 7px;
+}

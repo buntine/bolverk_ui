@@ -8,11 +8,6 @@ $(document).ready(function(){
     $(this).addClass("selected_cell");
   });
 
-  // Update the cell indicator on cell rollover.
-  $("#main_memory table.cells div").hover(function(){
-    $("#current_cell").html($(this).attr("id"));
-  });
-
   // Render the cell editable on a double-click.
   $("#main_memory table.cells div").dblclick(function(){
     if (!is_being_edited(this)) {
