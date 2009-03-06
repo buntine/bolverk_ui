@@ -13,6 +13,16 @@ helpers do
   def marshalled_emulator
     File.join("tmp/sessions", session[:key])
   end
+
+  def read_emulator
+    File.read(marshalled_emulator)
+  end
+
+  def write_emulator(emulator)
+    session_file = File.open(marshalled_emulator, "w")
+    session_file.write(Marshal.dump(emulator))
+    session_file.close
+  end
 end
 
 before do
@@ -23,18 +33,26 @@ before do
   # a unique key. On each request, the object is decoded for
   # usage.
   if File.exists?(marshalled_emulator)
-    encoded_object = File.read(marshalled_emulator)
+    encoded_object = read_emulator
     bolverk = Marshal.load(encoded_object)
   else
     bolverk = Bolverk::Emulator.new
-    session_file = File.open(marshalled_emulator, "w")
-    session_file.write(Marshal.dump(bolverk))
-    session_file.close
+    write_emulator(bolverk)
   end
 
   @emulator = bolverk
 end
 
+# Render the emulator.
 get '/' do
   erb :index
+end
+
+# Write to a memory cell and save the emulator.
+post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
+  cell = params[:captures][0]
+  value = params[:captures][1]
+  @emulator.memory_write(cell, value.clone)
+  write_emulator(@emulator)
+  body(value)
 end

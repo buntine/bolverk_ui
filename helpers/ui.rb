@@ -21,7 +21,8 @@ helpers do
       (0..15).each do |cell|
         hex = ((row * 16) + cell).to_s(base=16).rjust(2, "0").upcase
         value = @emulator.memory_read(hex).binary_to_hex
-        content << "<td><div id=\"#{hex}\"><span>#{value}</span><span class=\"hex\">#{hex}</span></div></td>"
+        css = value.eql?("00") ? "empty_cell" : "populated_cell"
+        content << "<td><div id=\"#{hex}\" class=\"#{css}\"><span>#{value}</span><span class=\"hex\">#{hex}</span></div></td>"
       end
       content << "</tr>"
     end

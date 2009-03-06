@@ -40,7 +40,9 @@ $(document).ready(function(){
     if (!is_valid_base_16(value)) { value = '00'; }
 
     if (value != original_value) {
-      cell.html(value.toUpperCase());
+      $.post("/write/" + cell.parent().attr("id") + "/" + value.toUpperCase(), {}, function(data) {
+        cell.html(data);
+      });
       //$(this).parent().html('<img src="images/ajax-small.gif" />');
     } else
       cell.html(value.toUpperCase());
