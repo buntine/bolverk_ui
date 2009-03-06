@@ -10,23 +10,23 @@ $(document).ready(function(){
 
   // Render the cell editable on a double-click.
   $("#main_memory table.cells div").dblclick(function(){
-    if (!is_being_edited(this)) {
-      hex = $(this).html();
+    cell = $(this).children("span:first");
+    if (!is_being_edited(cell)) {
+      hex = $(cell).html();
       text_box = document.createElement("input");
       text_box.setAttribute("type", "text");
       text_box.setAttribute("value", hex);
       text_box.setAttribute("maxlength", "2");
       text_box.setAttribute("maxlength", "2");
       text_box.className = "cellcontents";
-      text_box.style.width = '18px';
 
       // Store the hidden val so we can reference it later.
       current_val = document.createElement("input");
       current_val.setAttribute("type", "hidden");
       current_val.setAttribute("value", hex);
 
-      $(this).html(text_box);
-      $(this).append(current_val);
+      $(cell).html(text_box);
+      $(cell).append(current_val);
       $(text_box).focus();
     }
   });

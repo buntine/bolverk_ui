@@ -194,7 +194,8 @@ div#legend ul li div {
 }
 
 .cellcontents {
-  height: 15px;
+  height: 13px;
+  width: 20px;
   padding: 0;
 }
 
