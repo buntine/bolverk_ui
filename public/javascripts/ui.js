@@ -1,11 +1,16 @@
 $(document).ready(function(){
 
-  // Control the selected cell.
+  // Highlight the selected cell.
   $("#main_memory table.cells div").click(function(){
     $("#main_memory table.cells div").each(function(){
       $(this).removeClass("selected_cell");
     });
     $(this).addClass("selected_cell");
+  });
+
+  // Update the cell indicator on cell rollover.
+  $("#main_memory table.cells div").hover(function(){
+    $("#current_cell").html($(this).attr("id"));
   });
 
   // Render the cell editable on a double-click.

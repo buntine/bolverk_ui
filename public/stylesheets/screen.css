@@ -196,3 +196,14 @@ div#legend ul li div {
   height: 15px;
   padding: 0;
 }
+
+#main_memory_heading {
+  position: relative;
+}
+
+#cell_indicator {
+  position: absolute;
+  top: 0px;
+  right: 3px;
+  font-weight: normal;
+}
