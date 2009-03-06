@@ -1,35 +1,43 @@
-  <div id="registers">
-    <h2>Registers</h2>
-    <%= display_registers %>
-  </div>
-  <div id="main_memory">
-    <h2>Main Memory</h2>
-    <table cellpadding="0" cellspacing="0" class="cells">
-    <% (1..16).each do %>
+helpers do
+
+  def display_registers
+  <<-EOF
+    <table align="center" cellpadding="0" cellspacing="0" class="cells">
       <tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
+      </tr><tr>
         <td><div>00</div></td>
       </tr>
-    <% end %>
     </table>
-  </div>
-  <div id="control">
-    <%= erb :control_panel, :layout => false %>
-    <%= erb :stdout, :layout => false %>
-    <%= erb :stderr, :layout => false %>
-    <%= erb :legend, :layout => false %>
-  </div>
+  EOF
+  end
+
+end
