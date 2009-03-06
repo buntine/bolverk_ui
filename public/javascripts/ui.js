@@ -46,8 +46,8 @@ $(document).ready(function(){
       cell.html(value.toUpperCase());
 
     // Configure the display for the cell based on the value we just stored in there.
-    if (value != "00") { cell.removeClass("selected_cell"); cell.addClass("populated_cell"); }
-    else { cell.removeClass("populated_cell"); cell.addClass("selected_cell"); }
+    if (value != "00") { cell.parent().removeClass("selected_cell"); cell.parent().addClass("populated_cell"); }
+    else { cell.parent().removeClass("populated_cell"); cell.parent().addClass("selected_cell"); }
   });
 
   // Returns true if 'cell' contains anything other base-16 string.
