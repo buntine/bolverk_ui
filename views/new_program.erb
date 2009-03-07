@@ -1,0 +1,17 @@
+<h2>New Program</h2>
+<div id="thickbox_error_container"></div>
+<p>To store a program in the emulator, write the machine instructions below in a space-delimited list.</p>
+<p>Remember, each instruction is 16-bits and therefore requires two cells of main memory.</p>
+<form class="frm" id="program_form" method="post" action="/program">
+  <ul>
+    <li>
+      <label for="cell">Starting cell:<label>
+      <%= render_cell_select_box %>
+    </li>
+    <li>
+      <label for="cell">Instructions:<label>
+      <textarea name="instructions" id="instructions" class="new_program" rows="5" cols="40"></textarea>
+    </li>
+    <li><input type="submit" name="submit" value="Create" /></li>
+  </ul>
+</form>
