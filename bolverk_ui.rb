@@ -43,20 +43,32 @@ before do
   @emulator = bolverk
 end
 
+# Thrown when invalid instructions are loaded.
+error RuntimeError do
+  @error_message = request.env['sinatra.error'].message
+  erb :index
+end
+
+# Thrown when a non-existant memory address is referenced.
+error Bolverk::InvalidMemoryAddress do
+  @error_message = request.env['sinatra.error'].message
+  erb :index
+end
+
 # Render the emulator.
 get '/' do
   erb :index
 end
 
 # Render the "write program" dialog.
-get '/program/new' do
-  erb :new_program, :layout => false
+get '/program' do
+  request.xhr? ? erb(:new_program, :layout => false) : erb(:index)
 end
 
 # Write a program to memory and save the emulator.
 post '/program' do
   cell = params[:cell]
-  instructions = params[:instructions].split(" ")
+  instructions = (params[:instructions] || "").split(" ")
   @emulator.load_program_into_memory(cell, instructions)
   write_emulator(@emulator)
   erb :index

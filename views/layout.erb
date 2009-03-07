@@ -27,6 +27,9 @@
         <h3>A very simple processor emulator built primarily for educational purposes. See the <a href="#">README</a> and <a href="#">LANGUAGE SPEC</a>.</h3>
       </div>
       <div id="content">
+        <% unless @error_message.nil? %>
+          <div id="error_message"><%= @error_message %></div>
+        <% end %>
         <%= yield %>
       </div>
     </div>

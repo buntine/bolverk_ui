@@ -217,9 +217,15 @@ table.cells tr td div span.hex {
   font-size: 7px;
 }
 
-.thickbox_error {
+.thickbox_error,
+#error_message {
   background-color: #ffcccc;
   border: 1px solid #ff0000;
   padding: 6px;
   margin: 6px 0;
+}
+
+#error_message {
+  margin-top: 0;
+  font-weight: bold;
 }
