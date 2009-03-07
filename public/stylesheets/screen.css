@@ -216,3 +216,10 @@ table.cells tr td div span.hex {
   left: 1px;
   font-size: 7px;
 }
+
+.thickbox_error {
+  background-color: #ffcccc;
+  border: 1px solid #ff0000;
+  padding: 6px;
+  margin: 6px 0;
+}

@@ -48,6 +48,20 @@ get '/' do
   erb :index
 end
 
+# Render the "write program" dialog.
+get '/program/new' do
+  erb :new_program, :layout => false
+end
+
+# Write a program to memory and save the emulator.
+post '/program' do
+  cell = params[:cell]
+  instructions = params[:instructions].split(" ")
+  @emulator.load_program_into_memory(cell, instructions)
+  write_emulator(@emulator)
+  erb :index
+end
+
 # Write to a memory cell and save the emulator.
 post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]

@@ -43,13 +43,29 @@ $(document).ready(function(){
       $.post("/write/" + cell.parent().attr("id") + "/" + value.toUpperCase(), {}, function(data) {
         cell.html(data);
       });
-      //$(this).parent().html('<img src="images/ajax-small.gif" />');
     } else
       cell.html(value.toUpperCase());
 
     // Configure the display for the cell based on the value we just stored in there.
     if (value != "00") { cell.parent().removeClass("selected_cell"); cell.parent().addClass("populated_cell"); }
     else { cell.parent().removeClass("populated_cell"); cell.parent().addClass("selected_cell"); }
+  });
+
+  // Validates the machine instructions in the "New Program" form.
+  $('#program_form').livequery("submit", function(){
+    valid_instructions = /^([A-F0-9]{4}\s?)+$/i;
+    
+    // Display a big error message to the user.
+    if ( $("#instructions").val() == "" || !valid_instructions.test($("#instructions").val()) ) {
+      error_div = document.createElement("div");
+      error_div.className = "thickbox_error";
+      error_div.innerHTML = "The entered program is invalid! Please enter only 4-character instructions in base-16.";
+      $("#thickbox_error_container").html(error_div);
+      setTimeout("$('.thickbox_error').fadeOut('slow');", 3300);
+      return false;
+    }
+
+    return true;
   });
 
   // Returns true if 'cell' contains anything other base-16 string.

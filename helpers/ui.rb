@@ -6,7 +6,7 @@ helpers do
     (0..15).each do |cell|
       hex = cell.to_s(base=16).upcase
       value = @emulator.register_read(hex).binary_to_hex
-      content << "<tr><td><div><span>#{value}</span><span class=\"hex\">#{hex}</span></div></td></tr>"
+      content << "<tr><td><div><span>#{value}</span><span class=\"hex\">R#{hex}</span></div></td></tr>"
     end
     content << "</table>"
 
@@ -30,4 +30,18 @@ helpers do
 
     content
   end
+
+  # Displays a select with options for each hex value from 00 to FE.
+  def render_cell_select_box
+    content = "<select name=\"cell\">"
+    (0..254).each do |number|
+      hex = number.to_s(base=16).rjust(2, "0").upcase
+      content << "<option value=\"#{hex}\">#{hex}</option>"
+    end
+    content << "</select>"
+
+    content
+  end
+
 end
+
