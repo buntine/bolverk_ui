@@ -51,7 +51,7 @@ end
 
 # Thrown when a non-existant memory address is referenced.
 error Bolverk::InvalidMemoryAddress do
-  @error_message = request.env['sinatra.error'].message
+  @error_message = "#{request.env['sinatra.error'].message} (Did you run out of memory cells?)"
   erb :index
 end
 

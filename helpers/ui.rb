@@ -33,7 +33,7 @@ helpers do
 
   # Displays a select with options for each hex value from 00 to FE.
   def render_cell_select_box
-    content = "<select name=\"cell\">"
+    content = "<select name=\"cell\" class=\"sml\">"
     (0..254).each do |number|
       hex = number.to_s(base=16).rjust(2, "0").upcase
       content << "<option value=\"#{hex}\">#{hex}</option>"

@@ -238,3 +238,53 @@ table.cells tr td div span.hex {
   right: 5px;
   font-size: 10pt;
 }
+
+#TB_window h3 {
+  font-size: 16pt;
+  margin: 10px 0;
+}
+
+form.frm ul { 
+  margin-top: 8px;
+  list-style: none;
+}
+
+form.frm ul li {
+  padding: 3px;
+}
+
+form.frm ul li label {
+  float: left;
+  width: 120px;
+}
+
+form.frm ul li input[type='text'], form.frm ul li textarea, form.frm ul li select {
+  width: 160px;
+}
+
+form.frm ul li input.sml, form.frm ul li select.sml {
+  width: 80px;
+}
+
+form.frm ul li input.med, form.frm ul li select.med {
+  width: 120px;
+}
+
+form.frm ul li textarea {
+  width: 300px;
+  height: 120px;
+}
+
+form.frm ul li.last {
+  margin-left: 120px;
+  padding-top: 17px;
+}
+
+div.tip {
+  margin-bottom: 10px;
+}
+
+div.tip span {
+  color: #8b0000;
+  font-weight: bold;
+}
