@@ -6,6 +6,13 @@ $(document).ready(function(){
       $(this).removeClass("selected_cell");
     });
     $(this).addClass("selected_cell");
+
+    hex = $(this).children("span:first").html();
+alert(hex);
+    if (is_valid_base_16(hex) && hex != "00")
+      $("#initialize_program").removeAttr("disabled");
+    else
+      $("#initialize_program").attr("disabled", "disabled");
   });
 
   // Render the cell editable on a double-click.
