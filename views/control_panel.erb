@@ -6,13 +6,17 @@
         </li>
         <li>...</li>
         <li>
-          <form method="get" action="#">
+          <form method="post" action="/program/start">
             <input type="submit" disabled="true" id="initialize_program" value="Initialize program" />
           </form>
         </li>
         <li>
           <form method="get" action="#">
+            <% if @emulator.program_counter.nil? %>
             <input type="submit" disabled="true" value="Machine Cycle" />
+            <% else %>
+            <input type="submit" value="Machine Cycle" />
+            <% end %>
           </form>
         </li>
         <li>

@@ -74,6 +74,14 @@ post '/program' do
   erb :index
 end
 
+# Initialise a program in the processor and save the emulator.
+post %r{/program/start/([a-fA-F0-9]{2})} do
+  cell = params[:captures][0]
+  @emulator.start_program(cell)
+  write_emulator(@emulator)
+  erb :index
+end
+
 # Write to a memory cell and save the emulator.
 post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]

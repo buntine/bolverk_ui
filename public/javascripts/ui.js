@@ -8,10 +8,10 @@ $(document).ready(function(){
     $(this).addClass("selected_cell");
 
     hex = $(this).children("span:first").html();
-alert(hex);
-    if (is_valid_base_16(hex) && hex != "00")
+    if (is_valid_base_16(hex) && hex != "00") {
       $("#initialize_program").removeAttr("disabled");
-    else
+      $("#initialize_program").parent().attr("action", "/program/start/" + $(this).children("span:last").html())
+    } else
       $("#initialize_program").attr("disabled", "disabled");
   });
 

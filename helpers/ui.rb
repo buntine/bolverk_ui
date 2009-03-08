@@ -22,6 +22,15 @@ helpers do
         hex = ((row * 16) + cell).to_s(base=16).rjust(2, "0").upcase
         value = @emulator.memory_read(hex).binary_to_hex
         css = value.eql?("00") ? "empty_cell" : "populated_cell"
+
+        # Display as program_cell if this cell is the next to be executed.
+        unless @emulator.program_counter.nil?
+          counter = @emulator.program_counter.hex
+          if [counter, counter+1].include?(hex.hex)
+            css = "program_cell"
+          end
+        end
+
         content << "<td><div id=\"#{hex}\" class=\"#{css}\"><span>#{value}</span><span class=\"hex\">#{hex}</span></div></td>"
       end
       content << "</tr>"
