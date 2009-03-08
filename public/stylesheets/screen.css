@@ -226,6 +226,15 @@ table.cells tr td div span.hex {
 }
 
 #error_message {
+  position: relative;
   margin-top: 0;
   font-weight: bold;
+}
+
+#error_message a {
+  display: block;
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  font-size: 10pt;
 }

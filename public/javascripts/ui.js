@@ -68,6 +68,9 @@ $(document).ready(function(){
     return true;
   });
 
+  $('.close-dialog-link').click(function(){
+    $(this).parent().fadeOut('slow');
+  });
   // Returns true if 'cell' contains anything other base-16 string.
   function is_being_edited(cell) {
     return !is_valid_base_16($(cell).html());

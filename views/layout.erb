@@ -28,7 +28,7 @@
       </div>
       <div id="content">
         <% unless @error_message.nil? %>
-          <div id="error_message"><%= @error_message %></div>
+          <div id="error_message"><%= @error_message %> <a href="#" class="close-dialog-link">Close</a></div>
         <% end %>
         <%= yield %>
       </div>
