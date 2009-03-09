@@ -12,7 +12,6 @@ a {
 
 div#container {
   width: 955px;
-  height: 722px;
   margin: 0 auto;
   padding: 0;
 }
@@ -287,4 +286,34 @@ div.tip {
 div.tip span {
   color: #8b0000;
   font-weight: bold;
+}
+
+ol {
+  margin: 20px;
+  list-style-type: none;
+}
+
+ol > li {
+  padding: 8px 0;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+li h4 {
+  font-weight: bold;
+  background-color: #eee;
+  border-bottom: 1px solid #777;
+}
+
+ol li p {
+  margin: 10px 0;
+}
+
+ul.spec {
+ list-style-type: disc;
+ margin: 10px 0 0 35px;
+}
+
+ul.spec li {
+  padding: 3px 0;
 }

@@ -65,6 +65,11 @@ get '/program' do
   request.xhr? ? erb(:new_program, :layout => false) : erb(:index)
 end
 
+# Render the README view.
+get '/readme' do
+  erb :readme
+end
+
 # Write a program to memory and save the emulator.
 post '/program' do
   cell = params[:cell]
