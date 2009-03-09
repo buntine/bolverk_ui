@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'bolverk'
 require 'helpers/ui'
+require 'output_catcher'
 
 enable :sessions
 
@@ -27,6 +28,7 @@ end
 
 before do
   session[:key] ||= generate_session_key
+  session[:stdout] ||= ""
 
   # Rather than keeping the whole emulator in the session,
   # its marshalled and stored locally, with a reference to
@@ -55,6 +57,18 @@ error Bolverk::InvalidMemoryAddress do
   erb :index
 end
 
+# Thrown when a non-existant operation is executed.
+error Bolverk::UnknownOpCodeError do
+  @error_message = "#{request.env['sinatra.error'].message} (See the LANGUAGE_SPEC)"
+  erb :index
+end
+
+# Thrown when processor is cycled and the program counter is null.
+error Bolverk::NullProgramCounterError do
+  @error_message = "#{request.env['sinatra.error'].message} (Is a program running?)"
+  erb :index
+end
+
 # Render the emulator.
 get '/' do
   erb :index
@@ -70,7 +84,7 @@ get '/readme' do
   erb :readme
 end
 
-# Write a program to memory and save the emulator.
+# Write a program to memory.
 post '/program' do
   cell = params[:cell]
   instructions = (params[:instructions] || "").split(" ")
@@ -79,7 +93,7 @@ post '/program' do
   erb :index
 end
 
-# Initialise a program in the processor and save the emulator.
+# Initialise a program in the processor.
 post %r{/program/start/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]
   @emulator.start_program(cell)
@@ -87,7 +101,16 @@ post %r{/program/start/([a-fA-F0-9]{2})} do
   erb :index
 end
 
-# Write to a memory cell and save the emulator.
+# Perform a machine cycle and render the effects.
+post '/program/step' do
+  session[:stdout] << OutputCatcher.catch_out do
+    @emulator.perform_machine_cycle
+  end
+  write_emulator(@emulator)
+  erb :index
+end
+
+# Write to a memory cell.
 post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]
   value = params[:captures][1]

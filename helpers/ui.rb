@@ -6,7 +6,8 @@ helpers do
     (0..15).each do |cell|
       hex = cell.to_s(base=16).upcase
       value = @emulator.register_read(hex).binary_to_hex
-      content << "<tr><td><div><span>#{value}</span><span class=\"hex\">R#{hex}</span></div></td></tr>"
+      css = value.eql?("00") ? "empty_cell" : "populated_cell"
+      content << "<tr><td><div id=\"r#{hex}\" class=\"#{css}\"><span>#{value}</span><span class=\"hex\">R#{hex}</span></div></td></tr>"
     end
     content << "</table>"
 

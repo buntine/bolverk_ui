@@ -11,7 +11,7 @@
           </form>
         </li>
         <li>
-          <form method="get" action="#">
+          <form method="post" action="/program/step">
             <% if @emulator.program_counter.nil? %>
             <input type="submit" disabled="true" value="Machine Cycle" />
             <% else %>
