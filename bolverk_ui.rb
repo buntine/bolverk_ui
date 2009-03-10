@@ -93,6 +93,11 @@ post '/program' do
   erb :index
 end
 
+# Clear main memory, registers and flush stdout.
+post '/reboot' do
+  # MIGHT NEED TO ADD THIS FUNCTIONALITY TO ENGINE...
+end
+
 # Initialise a program in the processor.
 post %r{/program/start/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]
