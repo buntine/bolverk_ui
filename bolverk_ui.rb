@@ -124,5 +124,6 @@ post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]
   value = params[:captures][1]
   @emulator.memory_write(cell, value.clone)
-  save_and_render
+  write_emulator(@emulator)
+  value
 end
