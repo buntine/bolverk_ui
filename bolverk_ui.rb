@@ -84,9 +84,12 @@ get '/program' do
   request.xhr? ? erb(:new_program, :layout => false) : erb(:index)
 end
 
-# Render the README view.
 get '/readme' do
   erb :readme
+end
+
+get '/language_spec' do
+  erb :language_spec
 end
 
 # Write a program to memory.
