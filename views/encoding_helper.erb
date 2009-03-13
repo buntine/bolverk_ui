@@ -1,0 +1,24 @@
+<h3>Encoding Helper</h3>
+<div id="thickbox_error_container"></div>
+<p>Use the form below to easily encode a decimal number for storage within the machine.</p>
+<div class="tip"><span>Remember:</span> Only one byte is reserved for integers. Therefore, only -128 to 127 can be successfully stored!</div>
+<form class="frm" id="program_form" method="post" action="/write/encode">
+  <ul>
+    <li class="clearfix">
+      <label for="cell">Memory cell:<label>
+      <%= render_cell_select_box %>
+    </li>
+    <li class="clearfix">
+      <label for="instructions">Decimal value:<label>
+      <input type="text" class="sml" name="decimal" maxlength="9" id="decimal" />
+    </li>
+    <li class="clearfix">
+      <label for="cell">Type:<label>
+      <select name="type" class="xlrg" id="type">
+        <option value="signed">Signed integer (Two's Complement)</option>
+        <option value="floating">Floating-point integer</option>
+      </select>
+    </li>
+    <li class="last"><input type="submit" name="submit" value="Insert" /></li>
+  </ul>
+</form>

@@ -79,9 +79,12 @@ get '/' do
   erb :index
 end
 
-# Render the "write program" dialog.
 get '/program' do
   request.xhr? ? erb(:new_program, :layout => false) : erb(:index)
+end
+
+get '/program/encoder' do
+  erb :encoding_helper, :layout => false
 end
 
 get '/readme' do
@@ -90,14 +93,6 @@ end
 
 get '/language_spec' do
   erb :language_spec
-end
-
-# Write a program to memory.
-post '/program' do
-  cell = params[:cell]
-  instructions = (params[:instructions] || "").split(" ")
-  @emulator.load_program_into_memory(cell, instructions)
-  save_and_render
 end
 
 # Clear main memory, registers and flush stdout.
@@ -122,6 +117,14 @@ post '/program/step' do
   save_and_render
 end
 
+# Write a program to memory.
+post '/program' do
+  cell = params[:cell]
+  instructions = (params[:instructions] || "").split(" ")
+  @emulator.load_program_into_memory(cell, instructions)
+  save_and_render
+end
+
 # Write to a memory cell.
 post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]
@@ -129,4 +132,12 @@ post %r{/write/([a-fA-F0-9]{2})/([a-fA-F0-9]{2})} do
   @emulator.memory_write(cell, value.clone)
   write_emulator(@emulator)
   value
+end
+
+# Write an encoded value to a particular memory cell.
+post '/write/encode' do
+  cell = params[:cell]
+  decimal = (params[:decimal] =~ /^\d+$/) ? params[:decimal].to_i : 0
+  type = params[:type]
+    
 end

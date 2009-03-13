@@ -269,6 +269,14 @@ form.frm ul li input.med, form.frm ul li select.med {
   width: 120px;
 }
 
+form.frm ul li input.lrg, form.frm ul li select.lrg {
+  width: 180px;
+}
+
+form.frm ul li input.xlrg, form.frm ul li select.xlrg {
+  width: 265px;
+}
+
 form.frm ul li textarea {
   width: 300px;
   height: 120px;
