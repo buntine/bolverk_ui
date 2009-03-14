@@ -73,7 +73,7 @@ $(document).ready(function(){
 
   // Validates the data in the "Encodings Helper" form.
   $('#encoder_form').livequery("submit", function(){
-    valid_decimal = /^[0-9.]+$/;
+    valid_decimal = /^[-.\d]+$/;
     
     // Display a big error message to the user.
     if ( !valid_decimal.test($("#decimal").val()) ) {

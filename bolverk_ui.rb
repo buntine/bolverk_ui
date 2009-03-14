@@ -4,6 +4,10 @@ require 'bolverk'
 require 'helpers/ui'
 require 'output_catcher'
 
+include Bolverk::Operations::ClassMethods
+
+class Bolverk::UnknownEncodingType < Exception; end
+
 enable :sessions
 
 helpers do
@@ -29,7 +33,15 @@ helpers do
     write_emulator(@emulator)
     erb :index
   end
+
+  def die_and_render(message=nil)
+    @error_message = request.env['sinatra.error'].message
+    @error_message << " (#{message})" unless message.nil?
+    erb :index
+  end
+
 end
+
 
 before do
   session[:key] ||= generate_session_key
@@ -50,29 +62,31 @@ before do
   @emulator = bolverk
 end
 
+
 # Thrown when invalid instructions are loaded.
 error RuntimeError do
-  @error_message = request.env['sinatra.error'].message
-  erb :index
+  die_and_render
 end
 
 # Thrown when a non-existant memory address is referenced.
 error Bolverk::InvalidMemoryAddress do
-  @error_message = "#{request.env['sinatra.error'].message} (Did you run out of memory cells?)"
-  erb :index
+  die_and_render "Did you run out of memory cells?"
 end
 
 # Thrown when a non-existant operation is executed.
 error Bolverk::UnknownOpCodeError do
-  @error_message = "#{request.env['sinatra.error'].message} (See the LANGUAGE_SPEC)"
-  erb :index
+  die_and_render "See the LANGUAGE_SPEC"
 end
 
 # Thrown when processor is cycled and the program counter is null.
 error Bolverk::NullProgramCounterError do
-  @error_message = "#{request.env['sinatra.error'].message} (Is a program running?)"
-  erb :index
+  die_and_render "Is a program running?"
 end
+
+error Bolverk::UnknownEncodingType do
+  die_and_render
+end
+
 
 # Render the emulator.
 get '/' do
@@ -137,7 +151,18 @@ end
 # Write an encoded value to a particular memory cell.
 post '/write/encode' do
   cell = params[:cell]
-  decimal = (params[:decimal] =~ /^\d+$/) ? params[:decimal].to_i : 0
+  decimal = (params[:decimal] =~ /^[-.\d]+$/) ? params[:decimal].to_f : 0
   type = params[:type]
+
+  value = case type
+    when "signed"
+      encode_twos_complement(decimal.to_i)
+    when "floating_point"
+      encode_floating_point(decimal)
+    else
+      raise Bolverk::UnknownEncodingType, "Unknown encoding type: #{type}"
+  end
     
+  @emulator.memory_write(cell, value)
+  save_and_render
 end
