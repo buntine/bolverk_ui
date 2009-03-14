@@ -64,11 +64,20 @@ $(document).ready(function(){
     
     // Display a big error message to the user.
     if ( $("#instructions").val() == "" || !valid_instructions.test($("#instructions").val()) ) {
-      error_div = document.createElement("div");
-      error_div.className = "thickbox_error";
-      error_div.innerHTML = "The entered program is invalid! Please enter only 4-character instructions in base-16.";
-      $("#thickbox_error_container").html(error_div);
-      setTimeout("$('.thickbox_error').fadeOut('slow');", 3300);
+      display_thickbox_error("The entered program is invalid! Please enter only 4-character instructions in base-16.");
+      return false;
+    }
+
+    return true;
+  });
+
+  // Validates the data in the "Encodings Helper" form.
+  $('#encoder_form').livequery("submit", function(){
+    valid_decimal = /^[0-9.]+$/;
+    
+    // Display a big error message to the user.
+    if ( !valid_decimal.test($("#decimal").val()) ) {
+      display_thickbox_error("Please enter a valid decimal value in the 'Decimal value' field.");
       return false;
     }
 
@@ -78,6 +87,7 @@ $(document).ready(function(){
   $('.close-dialog-link').click(function(){
     $(this).parent().fadeOut('slow');
   });
+
   // Returns true if 'cell' contains anything other base-16 string.
   function is_being_edited(cell) {
     return !is_valid_base_16($(cell).html());
@@ -87,6 +97,14 @@ $(document).ready(function(){
   function is_valid_base_16(value) {
     valid_hex = /^[A-F0-9]{2}$/i;
     return valid_hex.test(value);
+  }
+
+  function display_thickbox_error(message) {
+    error_div = document.createElement("div");
+    error_div.className = "thickbox_error";
+    error_div.innerHTML = message;
+    $("#thickbox_error_container").html(error_div);
+    setTimeout("$('.thickbox_error').fadeOut('slow');", 3300);
   }
 
 });
