@@ -4,5 +4,6 @@
       <p>-- EOF --</P>
       <% else %>
       <p><%= session[:stdout] %></P>
+      <p><a href="/flush" id="flush_stdout">Flush stdout</a></p>
       <% end %>
     </div>

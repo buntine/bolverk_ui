@@ -325,3 +325,7 @@ ul.spec {
 ul.spec li {
   padding: 3px 0;
 }
+
+a#flush_stdout {
+  font-size: 10pt;
+}

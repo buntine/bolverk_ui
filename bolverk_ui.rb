@@ -119,6 +119,12 @@ post '/reboot' do
   save_and_render
 end
 
+# Clears the contents of stdout.
+get '/flush' do
+  session[:stdout] = ""
+  erb :index
+end
+
 # Initialise a program in the processor.
 post %r{/program/start/([a-fA-F0-9]{2})} do
   cell = params[:captures][0]
