@@ -39,7 +39,6 @@ helpers do
     @error_message << " (#{message})" unless message.nil?
     erb :index
   end
-
 end
 
 
@@ -81,6 +80,10 @@ end
 # Thrown when processor is cycled and the program counter is null.
 error Bolverk::NullProgramCounterError do
   die_and_render "Is a program running?"
+end
+
+error Bolverk::OverflowError do
+  die_and_render "See the LANGUAGE_SPEC for more info"
 end
 
 error Bolverk::UnknownEncodingType do
