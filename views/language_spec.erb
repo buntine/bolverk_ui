@@ -16,15 +16,26 @@
     <h4>Operations</h4>
     <table border="0" cellpadding="0" cellspacing="0" id="operations_list">
       <tr>
-        <th>Op-Code</th>
-        <th>Operand</th>
-        <th>Description</th>
+        <th class="opcode">Op-Code</th>
+        <th class="operand">Operand</th>
+        <th class="desc">Description</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>XST</td>
-        <td>fdfg dg fdgdfgfd gdfg dfgdfh jtrdv  h</td>
-      </tr>
+       <tr><td>1</td><td>RXY</td><td class="desc">LOAD the register R with the contents of the memory cell whose address is XY.</td></tr>
+       <tr><td>2</td><td>RXY</td><td class="desc">LOAD the resister R with the value XY.</td></tr>
+       <tr><td>3</td><td>RXY</td><td class="desc">STORE the contents of register R in the memory cell whose address is XY.</td></tr>
+       <tr><td>4</td><td>0RS</td><td class="desc">MOVE the contents of register R to register S (acts as a COPY).</td></tr>
+       <tr><td>5</td><td>STR</td><td class="desc">ADD the contents of registers R and S as though they were binary numbers and and store the result in register T. </td></tr>
+       <tr><td>6</td><td>STR</td><td class="desc">ADD the contents of registers R and S as though they were floating-point numbers and store the result in register T.</td></tr>
+       <tr><td>7</td><td>STR</td><td class="desc">OR the contents of registers S and T and store the contents in register R.</td></tr>
+       <tr><td>8</td><td>STR</td><td class="desc">AND the contents of registers S and T and store the contents in register R.</td></tr>
+       <tr><td>9</td><td>STR</td><td class="desc">EXCLUSIVE OR (XOR) the contents of registers S and T and store the contents in register R.</td></tr>
+       <tr><td>A</td><td>R0X</td><td class="desc">ROTATE the contents of register R to the right, in a circular-motion X times.</td></tr>
+       <tr><td>B</td><td>RXY</td><td class="desc">JUMP to the instruction stored at the memory cell XY if the contents of register R is equal to the contents of register 0. Otherwise, continue onto the next instruction as per normal.</td></tr> 
+       <tr><td>C</td><td>000</td><td class="desc">HALT execution and reset the program counter.</td></tr>
+       <tr><td>D</td><td>MXY</td><td class="desc">PRINT the contents of the memory cell whose address is XY to the standard output.
+         <p>The M parameter indicates the type of data:<ul><li>0 => ASCII character</li><li>1 => Binary number (as decimal)</li><li>2 => Floating-point number</li></ul></p></td></tr>
+       <tr><td>E</td><td>MXY</td><td class="desc">PRINT the value represented by XY to the standard output.
+         <p>The M parameter indicates the type of data:<ul><li>0 => ASCII character</li><li>1 => Binary number (as decimal)</li><li>2 => Floating-point number</li></ul></p></td></tr>
     </table>
   </li>
 </ol>

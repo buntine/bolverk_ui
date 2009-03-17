@@ -329,3 +329,34 @@ ul.spec li {
 a#flush_stdout {
   font-size: 10pt;
 }
+
+table#operations_list {
+  border: 0;
+  margin: 10px 0;
+  padding: 0;
+}
+
+table#operations_list tr th {
+  width: 100px;
+  font-weight: bold;
+  text-align: center;
+}
+
+table#operations_list tr th.desc {
+  text-align: left;
+  width: 750px;
+}
+
+table#operations_list tr td {
+  text-align: center;
+  vertical-align: top;
+  padding: 5px 3px;
+}
+
+table#operations_list tr td ul {
+  list-style: none;
+}
+
+table#operations_list tr td.desc {
+  text-align: left;
+}
