@@ -39,6 +39,22 @@ helpers do
     @error_message << " (#{message})" unless message.nil?
     erb :index
   end
+
+  def encode_ascii_characters(characters)
+    ascii_codes = []
+
+    characters.each_byte do |code|
+      ascii_codes << code.to_s(base=2).rjust(8, "0")
+    end 
+
+    ascii_codes
+  end
+
+  def increment_hex(hex_value)
+    binary = hex_value.hex_to_binary(size=8)
+    binary.increment!
+    binary.binary_to_hex
+  end
 end
 
 
@@ -160,18 +176,28 @@ end
 # Write an encoded value to a particular memory cell.
 post '/write/encode' do
   cell = params[:cell]
-  decimal = (params[:decimal] =~ /^[-.\d]+$/) ? params[:decimal].to_f : 0
   type = params[:type]
 
-  value = case type
+  case type
     when "signed"
-      encode_twos_complement(decimal.to_i)
+      decimal = (params[:value] =~ /^\-?\d+$/) ? params[:value].to_i : 0
+      value = encode_twos_complement(decimal)
+      @emulator.memory_write(cell, value)
     when "floating_point"
-      encode_floating_point(decimal)
+      decimal = (params[:value] =~ /^\-?[.\d]+$/) ? params[:value].to_f : 0
+      value = encode_floating_point(decimal)
+      @emulator.memory_write(cell, value)
+    when "ascii"
+      values = encode_ascii_characters(params[:value])
+
+      # Store each encoded character in subsequent cells.
+      values.each do |value|
+        @emulator.memory_write(cell, value)
+        cell = increment_hex(cell)
+      end
     else
       raise Bolverk::UnknownEncodingType, "Unknown encoding type: #{type}"
   end
     
-  @emulator.memory_write(cell, value)
   save_and_render
 end

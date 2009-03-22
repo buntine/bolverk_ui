@@ -73,12 +73,26 @@ $(document).ready(function(){
 
   // Validates the data in the "Encodings Helper" form.
   $('#encoder_form').livequery("submit", function(){
-    valid_decimal = /^[-.\d]+$/;
+    valid_decimal = /^\-?\d+$/;
+    valid_float = /^\-?[.\d]+$/;
     
-    // Display a big error message to the user.
-    if ( !valid_decimal.test($("#decimal").val()) ) {
-      display_thickbox_error("Please enter a valid decimal value in the 'Decimal value' field.");
-      return false;
+    // Validate the input appropriate depending on the selected "type".
+    switch ( $('select#type option:selected').val() ) {
+      case "signed":
+        if ( !valid_decimal.test($("#decimal").val()) ) {
+          display_thickbox_error("Please enter a valid decimal value in the 'Value' field.");
+          return false;
+        }
+      case "floating_point":
+        if ( !valid_float.test($("#decimal").val()) ) {
+          display_thickbox_error("Please enter a valid decimal value (with a radix) in the 'Value' field.");
+          return false;
+        }
+      case "ascii":
+        if ( $('#decimal').val() == "" ) {
+          display_thickbox_error("Please enter one or more valid characters in the 'Value' field.");
+          return false;
+        }
     }
 
     return true;

@@ -41,10 +41,11 @@ helpers do
     content
   end
 
-  # Displays a select with options for each hex value from 00 to FE.
-  def render_cell_select_box
+  # Displays a select with options for each hex value from 00 to FE/FF.
+  def render_cell_select_box(allow_ff=false)
     content = "<select name=\"cell\" class=\"sml\">"
-    (0..254).each do |number|
+    max_value = allow_ff ? 255 : 254
+    (0..max_value).each do |number|
       hex = number.to_s(base=16).rjust(2, "0").upcase
       content << "<option value=\"#{hex}\">#{hex}</option>"
     end
