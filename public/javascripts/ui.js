@@ -79,17 +79,17 @@ $(document).ready(function(){
     // Validate the input appropriate depending on the selected "type".
     switch ( $('select#type option:selected').val() ) {
       case "signed":
-        if ( !valid_decimal.test($("#decimal").val()) ) {
+        if ( !valid_decimal.test($("#value").val()) ) {
           display_thickbox_error("Please enter a valid decimal value in the 'Value' field.");
           return false;
         }
       case "floating_point":
-        if ( !valid_float.test($("#decimal").val()) ) {
+        if ( !valid_float.test($("#value").val()) ) {
           display_thickbox_error("Please enter a valid decimal value (with a radix) in the 'Value' field.");
           return false;
         }
       case "ascii":
-        if ( $('#decimal').val() == "" ) {
+        if ( $('#value').val() == "" ) {
           display_thickbox_error("Please enter one or more valid characters in the 'Value' field.");
           return false;
         }
