@@ -1,0 +1,12 @@
+================
+BOLVERK UI
+For v0.0.3
+================ 
+
+This Sinatra application adds a GUI for the Bolverk machine emulator. It allows you to write valid programs and then step them through the processor, one instruction at a time.
+
+This allows you to see how the program is effecting main memory in realtime.
+
+For a working implementation, see here: http://bolverk.andrewbuntine.com
+
+All comments and suggestions for improvement are welcomed. Thanks for stopping by. :)
